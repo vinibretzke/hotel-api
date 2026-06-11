@@ -2,7 +2,7 @@ namespace hotel_api.Features.ReservationStatus.Models;
 
 public class ReservationStatus
 {
-    public Guid Id { get; set; } = Guid.NewGuid();
+    public int Id { get; set; }
 
     public string Name { get; set; } = string.Empty;
 

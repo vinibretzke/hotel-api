@@ -6,13 +6,13 @@ using hotel_api.Features.ReservationStatus.Models;
 
 public class Reservation
 {
-    public Guid Id { get; set; } = Guid.NewGuid();
+    public int Id { get; set; }
 
-    public Guid GuestId { get; set; }
+    public int GuestId { get; set; }
 
-    public Guid RoomId { get; set; }
+    public int RoomId { get; set; }
 
-    public Guid ReservationStatusId { get; set; }
+    public int ReservationStatusId { get; set; }
 
     public DateTime CheckInDate { get; set; }
 

@@ -3,6 +3,9 @@ using hotel_api.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi;
 using hotel_api.Features.Guests.Services;
+using hotel_api.Features.Rooms.Services;
+using hotel_api.Features.Reservations.Services;
+using hotel_api.Features.ReservationStatus.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -45,6 +48,9 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 
 builder.Services.AddScoped<IGuestService, GuestService>();
+builder.Services.AddScoped<IRoomService, RoomService>();
+builder.Services.AddScoped<IReservationService, ReservationService>();
+builder.Services.AddScoped<IReservationStatusService, ReservationStatusService>();
 
 var app = builder.Build();
 

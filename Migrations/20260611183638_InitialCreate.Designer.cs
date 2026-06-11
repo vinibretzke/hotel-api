@@ -12,8 +12,8 @@ using hotel_api.Data;
 namespace hotel_api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260609203035_CreateNewTables")]
-    partial class CreateNewTables
+    [Migration("20260611183638_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,9 +27,11 @@ namespace hotel_api.Migrations
 
             modelBuilder.Entity("hotel_api.Features.Guests.Models.Guest", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("BirthCity")
                         .IsRequired()
@@ -39,8 +41,8 @@ namespace hotel_api.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<DateTime>("BirthDate")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<DateOnly>("BirthDate")
+                        .HasColumnType("date");
 
                     b.Property<string>("BirthState")
                         .IsRequired()
@@ -119,9 +121,11 @@ namespace hotel_api.Migrations
 
             modelBuilder.Entity("hotel_api.Features.ReservationStatus.Models.ReservationStatus", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
@@ -147,9 +151,11 @@ namespace hotel_api.Migrations
 
             modelBuilder.Entity("hotel_api.Features.Reservations.Models.Reservation", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CheckInDate")
                         .HasColumnType("timestamp with time zone");
@@ -163,18 +169,18 @@ namespace hotel_api.Migrations
                     b.Property<decimal>("DailyRate")
                         .HasColumnType("numeric");
 
-                    b.Property<Guid>("GuestId")
-                        .HasColumnType("uuid");
+                    b.Property<int>("GuestId")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Notes")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<Guid>("ReservationStatusId")
-                        .HasColumnType("uuid");
+                    b.Property<int>("ReservationStatusId")
+                        .HasColumnType("integer");
 
-                    b.Property<Guid>("RoomId")
-                        .HasColumnType("uuid");
+                    b.Property<int>("RoomId")
+                        .HasColumnType("integer");
 
                     b.Property<decimal>("TotalAmount")
                         .HasColumnType("numeric");
@@ -195,9 +201,11 @@ namespace hotel_api.Migrations
 
             modelBuilder.Entity("hotel_api.Features.Rooms.Models.Room", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<int>("Capacity")
                         .HasColumnType("integer");

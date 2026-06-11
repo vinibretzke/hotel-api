@@ -30,13 +30,13 @@ public class GuestService : IGuestService
         return MapToResponse(guest);
     }
 
-    public async Task<GuestResponse?> GetGuestByIdAsync(Guid id)
+    public async Task<GuestResponse?> GetGuestByIdAsync(int id)
     {
         var guest = await _context.Guests.FindAsync(id);
         return guest is null ? null : MapToResponse(guest);
     }
 
-    public async Task<GuestResponse?> UpdateGuestAsync(Guid id, UpdateGuestRequest request)
+    public async Task<GuestResponse?> UpdateGuestAsync(int id, UpdateGuestRequest request)
     {
         var guest = await _context.Guests.FindAsync(id);
         if (guest is null)
@@ -50,7 +50,7 @@ public class GuestService : IGuestService
         return MapToResponse(guest);
     }
 
-    public async Task<bool> DeleteGuestAsync(Guid id)
+    public async Task<bool> DeleteGuestAsync(int id)
     {
         var guest = await _context.Guests.FindAsync(id);
         if (guest is null)

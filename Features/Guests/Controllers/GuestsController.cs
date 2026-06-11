@@ -32,10 +32,10 @@ public class GuestsController : ControllerBase
     /// <summary>
     /// Obtém um hóspede pelo identificador.
     /// </summary>
-    [HttpGet("{id:guid}")]
+    [HttpGet("{id}")]
     [ProducesResponseType(typeof(GuestResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<ActionResult<GuestResponse>> GetById(Guid id)
+    public async Task<ActionResult<GuestResponse>> GetById(int id)
     {
         var guest = await _guestService.GetGuestByIdAsync(id);
         if (guest is null)
@@ -59,11 +59,11 @@ public class GuestsController : ControllerBase
     /// <summary>
     /// Atualiza um hóspede existente.
     /// </summary>
-    [HttpPut("{id:guid}")]
+    [HttpPut("{id:int}")]
     [ProducesResponseType(typeof(GuestResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<ActionResult<GuestResponse>> Update(Guid id, [FromBody] UpdateGuestRequest request)
+    public async Task<ActionResult<GuestResponse>> Update(int id, [FromBody] UpdateGuestRequest request)
     {
         var guest = await _guestService.UpdateGuestAsync(id, request);
         if (guest is null)
@@ -75,10 +75,10 @@ public class GuestsController : ControllerBase
     /// <summary>
     /// Remove um hóspede.
     /// </summary>
-    [HttpDelete("{id:guid}")]
+    [HttpDelete("{id:int}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> Delete(Guid id)
+    public async Task<IActionResult> Delete(int id)
     {
         var deleted = await _guestService.DeleteGuestAsync(id);
         if (!deleted)
