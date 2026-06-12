@@ -18,7 +18,7 @@ builder.Services.AddSwaggerGen(options =>
     {
         Title = "API Teste",
         Version = "v1",
-        Description = "API de gerenciamento de usuários."
+        Description = "API de gerenciamento de sistema para hotelaria."
     });
 
     var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
@@ -46,6 +46,12 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     );
 });
 
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+
+    db.Database.Migrate();
+}
 
 builder.Services.AddScoped<IGuestService, GuestService>();
 builder.Services.AddScoped<IRoomService, RoomService>();
