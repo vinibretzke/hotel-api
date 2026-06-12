@@ -28,13 +28,12 @@ jobs:
 
             git pull origin main
 
-            docker stop hotel-api || true
-
-            docker rm hotel-api || true
+            docker rm -f hotel-api || true
 
             docker build -t hotel-api .
 
             docker run -d \
               --name hotel-api \
+              --env-file .env \
               -p 80:8080 \
               hotel-api
